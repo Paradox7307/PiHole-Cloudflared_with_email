@@ -16,9 +16,13 @@ prompt_email() {
 # Install cloudflared
 install_cloudflared() {
     echo "Downloading and installing cloudflared..."
+    
+    # Download the cloudflared binary using wget
     wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -O /usr/local/bin/cloudflared
+    
+    # Make the binary executable
     sudo chmod +x /usr/local/bin/cloudflared
-    cloudflared -v
+    cloudflared -v  # Verify cloudflared installation
 
     # Enable cloudflared to run at startup
     echo "Creating cloudflared systemd service..."
@@ -57,7 +61,7 @@ EOF'
 install_msmtp() {
     echo "Installing msmtp..."
     sudo apt update
-    sudo apt install -y msmtp msmtp-mta
+    sudo apt install -y msmtp msmtp-mta  # The -y flag forces "Yes" to all prompts during installation
 
     echo "Creating .msmtprc file for Gmail configuration..."
 
